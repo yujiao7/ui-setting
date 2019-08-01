@@ -41,10 +41,13 @@ def init_api_project():
     _init_api_project()
 
 def init_ui_project():
-    yaml_path = root_path+'tools/init_project.yaml'
-    content =yaml_tool.get_yaml(yaml_path)
+    url = 'https://raw.githubusercontent.com/LudvikWoo/guoya-ui-test/master/config/init_ui_project.yaml'
+    os_tool.mkdir(root_path+'config/')
+    save_path= root_path+'config/init_ui_project.yaml'
+    request_tool.copy_github_file(url,save_path)
 
-    driver_info = content['init_ui']['chromedriver']
+    content =yaml_tool.get_yaml(save_path)
+    driver_info = content['chromedriver']
     url = driver_info['url']
     save_path=root_path+driver_info['save_path']
     os_tool.mkdir(save_path)
@@ -57,7 +60,7 @@ def init_ui_project():
     zip_tool.unzip_file(zip_path, save_path)
     os_tool.remove(zip_path)
 
-    files = content['init_ui']['files']
+    files = content['files']
     for file in files:
         url = file['url']
         save_path = root_path+file['save_path']
@@ -65,7 +68,7 @@ def init_ui_project():
         os_tool.mkdir(save_path)
         request_tool.copy_github_file(url,save_name)
 
-    dirs = content['init_ui']['dirs']
+    dirs = content['dirs']
     for dir in dirs:
         os_tool.mkdir(root_path+dir)
 
