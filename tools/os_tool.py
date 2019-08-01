@@ -18,6 +18,11 @@ def mkdir(path):
     if not is_exists:
         os.makedirs(path)
 
+def remove(path):
+    is_exists = os.path.exists(path)
+    if is_exists:
+        os.remove(path)
+
 def exists(file_or_path):
     is_exists = os.path.exists(file_or_path)
     return is_exists

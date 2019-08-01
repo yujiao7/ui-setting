@@ -5,6 +5,7 @@
 import requests
 from tools import log_tool
 from tools.decorators_tool import logs
+import time
 
 @logs
 def get_request(url, params=None, headers=None, cookies=None):
@@ -127,3 +128,34 @@ def put_request(url, data, header=None, cookies=None):
 
     return response
 
+def down_big_file(srcUrl, localFile):
+    print('%s\n --->>>\n  %s' % (srcUrl, localFile))
+    startTime = time.time()
+    with requests.get(srcUrl, stream=True) as r:
+        contentLength = int(r.headers['content-length'])
+        line = 'content-length: %dB/ %.2fKB/ %.2fMB'
+        line = line % (contentLength, contentLength / 1024, contentLength / 1024 / 1024)
+        print(line)
+        print('正在下载中..............')
+        downSize = 0
+        with open(localFile, 'wb') as f:
+            for chunk in r.iter_content(8192):
+                if chunk:
+                    f.write(chunk)
+                downSize += len(chunk)
+                line = '%d KB/s - %.2f MB， 共 %.2f MB'
+                line = line % (
+                downSize / 1024 / (time.time() - startTime), downSize / 1024 / 1024, contentLength / 1024 / 1024)
+                print(line, end='\r')
+                if downSize >= contentLength:
+                    break
+        timeCost = time.time() - startTime
+        line = '共耗时: %.2f s, 平均速度: %.2f KB/s'
+        line = line % (timeCost, downSize / 1024 / timeCost)
+        print(line)
+
+def copy_github_file(url,save_name):
+    resp = get_request(url)
+    body = resp.text
+    with open(save_name, 'w', encoding='utf-8') as file:
+        file.write(body)

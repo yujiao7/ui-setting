@@ -7,7 +7,7 @@ from distutils.core import setup
 
 setup(
     name="guoya-tools",  # 这里是pip项目发布的名称
-    version="1.0.1",  # 版本号，数值大的会优先被pip
+    version="1.0.2",  # 版本号，数值大的会优先被pip
     keywords=["tools", "auto-test"],
     description="to simplify auto test",
     long_description="A tools package,to simplify develope auto test",
