@@ -6,6 +6,8 @@ import shutil
 import stat
 import subprocess
 import yaml
+import time
+import requests
 
 def get_yaml(yaml_path):
     with open(yaml_path,'r',encoding='utf-8') as f:
@@ -59,12 +61,36 @@ def copy_file(src_file,target_dir):
     shutil.copy(src_file,target_dir)
 
 
+def down_big_file(srcUrl, localFile):
+    print('%s\n --->>>\n  %s' % (srcUrl, localFile))
+    startTime = time.time()
+    with requests.get(srcUrl, stream=True) as r:
+        contentLength = int(r.headers['content-length'])
+        line = 'content-length: %dB/ %.2fKB/ %.2fMB'
+        line = line % (contentLength, contentLength / 1024, contentLength / 1024 / 1024)
+        print(line)
+        print('正在下载中..............')
+        downSize = 0
+        with open(localFile, 'wb') as f:
+            for chunk in r.iter_content(8192):
+                if chunk:
+                    f.write(chunk)
+                downSize += len(chunk)
+                line = '%d KB/s - %.2f MB， 共 %.2f MB'
+                line = line % (
+                downSize / 1024 / (time.time() - startTime), downSize / 1024 / 1024, contentLength / 1024 / 1024)
+                print(line, end='\r')
+                if downSize >= contentLength:
+                    break
+        timeCost = time.time() - startTime
+        line = '共耗时: %.2f s, 平均速度: %.2f KB/s'
+        line = line % (timeCost, downSize / 1024 / timeCost)
+        print(line)
+
 def init_ui_project():
     root_path = get_root_path()
-    # -*- coding:utf-8 -*-
-    # Author : 小吴老师
-    # Data ：2019/8/1 11:41
-
+    url = 'http://chromedriver.storage.googleapis.com/75.0.3770.90/chromedriver_win32.zip'
+    down_big_file(url,root_path+'chrome_driver/chromedriver.exe')
     ## 先删除，再下载tools和ui工程
     tools_prj = 'c:/guoya/auto_test_init/guoya-tools'
     ui_prj = 'c:/guoya/auto_test_init/guoya-ui-test'
