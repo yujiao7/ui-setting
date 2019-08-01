@@ -1,9 +1,12 @@
 # -*- coding:utf-8 -*-
 # Author : 小吴老师
 # Data ：2019/7/18 20:27
-from tools import yaml_tool, os_tool, request_tool, zip_tool
-from init import init_project, init_env
-
+from tools import init_env
+from tools import init_project
+from tools import os_tool
+from tools import request_tool
+from tools import yaml_tool
+from tools import zip_tool
 root_path = os_tool.get_root_path()
 ################################
 # 初始化环境：第三方框架+果芽工具包
@@ -39,11 +42,11 @@ def init_api_project():
 
 def init_ui_project():
     url = 'https://raw.githubusercontent.com/LudvikWoo/guoya-ui-test/master/config/init_ui_project.yaml'
-    os_tool.mkdir(root_path + 'config/')
+    os_tool.mkdir(root_path+'config/')
     save_path= root_path+'config/init_ui_project.yaml'
-    request_tool.copy_github_file(url, save_path)
+    request_tool.copy_github_file(url,save_path)
 
-    content = yaml_tool.get_yaml(save_path)
+    content =yaml_tool.get_yaml(save_path)
     driver_info = content['chromedriver']
     url = driver_info['url']
     save_path=root_path+driver_info['save_path']
@@ -63,11 +66,11 @@ def init_ui_project():
         save_path = root_path+file['save_path']
         save_name = save_path+file['save_name']
         os_tool.mkdir(save_path)
-        request_tool.copy_github_file(url, save_name)
+        request_tool.copy_github_file(url,save_name)
 
     dirs = content['dirs']
     for dir in dirs:
-        os_tool.mkdir(root_path + dir)
+        os_tool.mkdir(root_path+dir)
 
 if __name__ == '__main__':
     init_ui_project()

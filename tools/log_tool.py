@@ -1,13 +1,12 @@
 import logging
 from logging.handlers import TimedRotatingFileHandler
 from tools import os_tool
-
 """
 封装log方法
 """
 logger = logging.getLogger(__name__)
 logger.setLevel(level=logging.INFO)
-root_path = os_tool.get_root_path() + 'logs/'
+root_path = os_tool.get_root_path()+'logs/'
 os_tool.mkdir(root_path)
 
 handler = TimedRotatingFileHandler(root_path + 'info.log',when = 'd',interval = 1,backupCount=30,encoding='utf-8')

@@ -1,0 +1,228 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <title>登录 - 腾讯工蜂</title>
+    
+
+
+
+
+
+<base href="https://git.code.tencent.com:443/" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+
+<meta name="google" content="notranslate" />
+
+<meta name="turbolinks-cache-control" content="no-cache">
+
+
+
+<meta property="keywords" content="腾讯工蜂、工蜂Git、腾讯Git、SVN、tgit、腾讯DevOps、代码托管、腾讯开源、配置管理">
+<meta property="description" content="腾讯工蜂Git是腾讯新一代高效研发管理解决方案">
+
+
+<meta name="csrf-token" content="a59a2479-4b26-473e-a8e8-50c038c56c0b"/>
+
+<meta name="csrf-param" content="_csrf"/>
+<meta name="csrf-header" content="X-CSRF-TOKEN"/>
+
+
+
+
+
+<link rel="shortcut icon" href="/assets/images/profile/favicon.ico" type="image/x-icon">
+
+
+
+<link href="assets/css/tgit-web-sk-default.min.f07158fb.css" media="all" rel="stylesheet" data-skin="default"/>
+<!--[if lt IE 10]>
+	<link type="text/css" href="/assets/css/tgit-web-ie.min.cad50a5e.css" media="all" rel="stylesheet">
+<![endif]-->
+
+
+
+
+<script type="text/javascript">
+	//<![CDATA[
+	window.gon = {};
+	gon.api_version = "1.0.20180725";
+	gon.default_avatar_url = "assets/images/avatar/no_user_avatar.png";
+	gon.default_issues_tracker = "tgit";
+	gon.max_file_size = "10";
+    gon.max_tag_file_size = "100";
+	gon.relative_url_root = "";
+	gon.user_color_scheme = "white";
+	gon.current_user_id = "";
+	//]]>
+</script>
+
+
+
+
+
+
+
+	<script src="assets/js/plugin/raven/3.8.0/raven.min.js" crossorigin="anonymous"></script>
+	<script>
+		Raven.config("", {
+		  release: "1.0.20180725",
+		  environment: "git.code.tencent.com",
+		  
+		  tags: {
+		    git_commit: "84237b9"
+          
+		  }
+		}).install();
+	</script>
+	
+	
+		<script>
+			Raven.setUserContext({
+			  "ip_address":"",
+			});
+		</script>
+	
+
+
+
+<script type="text/javascript" src="assets/js/plugin/flexible/flexible.js"></script>
+<script>
+	var userLocal = 'zh_CN';
+</script>
+<script src="assets/js/require.js"></script>
+<script>
+require.config({
+  baseUrl: 'assets/js',
+  urlArgs: "bust=84237b9",
+  config: {
+	i18n: {
+		locale: userLocal
+	}
+  }
+});
+requirejs( ['config'] , function(config){
+	require(['jquery', 'turbolinks', 'dispatcher', 'sidebar', 'application', '_default', 'user_app', 'place_holder'],
+		function($, Turbolinks, Dispatcher, PageSidebar, undefined, _default, userApp, placeHolder){
+	    placeHolder('.main-search', '#search');
+		  new Dispatcher();
+		  new PageSidebar();
+		  new _default();
+		  new userApp();
+		  document.addEventListener("turbolinks:load", function() {
+		  placeHolder('.main-search', '#search');
+			new Dispatcher();
+			new PageSidebar();
+			new _default();
+			new userApp();
+		  });
+		  console || console.log("_page.js is running");
+
+	});
+})	
+</script>
+
+
+
+    
+
+
+</head>
+
+
+    
+        
+    
+    
+
+
+<body class="sign normal notranslate" data-page="session:sign_in">
+
+
+
+
+    <div class="bg normal-bg">
+        <div class="bg-image" style="background-image:url('/assets/images/profile/sign-in-bg.e09bcb0a.png')"></div>
+    </div>
+
+
+<div class="bg normal-container">
+    <div class="container navless-container">
+        
+	
+	
+
+	<div class="sign-box">
+		<div class="sign-header">
+			<img src="/assets/images/profile/sign-in-logo.6fcbe341.svg" class="sign-in-logo">
+		</div>
+		<div class="sign-body only-providers">
+			
+			
+			
+				
+
+
+
+
+
+
+
+
+    
+        
+            
+        
+        
+    
+
+
+<div class="omniauth-providers ">
+    
+
+        <div class="provider" style="max-width:50% !important;">
+            
+            
+            
+            <a href="/users/auth/wechat_open" class="wechat_open has_tooltip"  data-turbolinks="false">
+                <img src="/assets/images/sign-in/wechat.svg">
+            </a>
+            <span class="hide">微信登录</span>
+        </div>
+    
+
+        <div class="provider" style="max-width:50% !important;">
+            
+            
+            
+            <a href="/users/auth/qcloud_oauth" class="qcloud_oauth has_tooltip"  data-turbolinks="false">
+                <img src="/assets/images/sign-in/qcloud.svg">
+            </a>
+            <span class="hide">腾讯云登录</span>
+        </div>
+    
+</div>
+
+			
+		</div>
+	</div>
+
+        <footer>
+            <div class="copyright">
+    <div>
+        &copy;1998&nbsp;-&nbsp;<span class="year"></span> Tencent Inc. All Rights Reserved.
+    </div>
+</div>
+        </footer>
+    </div>
+</div>
+
+</body>
+</html>

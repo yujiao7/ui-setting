@@ -16,7 +16,7 @@ setup(
     url="https://github.com/LudvikWoo/guoya-tools",  # 项目相关文件地址，一般是github
     author="wuling",
     author_email="wuling@guoyasoft.com",
-    packages=['init'],
+    data_files =['init_tool.py'],
     platforms="python",
     install_requires=[
         'pinyin==0.4.0',

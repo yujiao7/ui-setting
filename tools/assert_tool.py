@@ -1,5 +1,5 @@
 """
-封装Assert方法测试
+封装Assert方法
 
 """
 from tools import log_tool

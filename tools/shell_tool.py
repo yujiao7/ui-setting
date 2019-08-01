@@ -10,6 +10,7 @@ def invoke(cmd):
     try:
         output, errors = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
         o = output.decode("utf-8")
+        print(o)
         return o
     except Exception as e:
         log_tool.error('执行命令失败，请检查环境配置')
