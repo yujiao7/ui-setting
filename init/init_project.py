@@ -1,8 +1,7 @@
 # -*- coding:utf-8 -*-
 # Author : 小吴老师
 # Data ：2019/7/18 18:29
-from tools import os_tool
-from tools import excel_tool
+from tools import excel_tool, os_tool
 
 
 ############################
@@ -59,9 +58,9 @@ def ini_run():
     run = "# -*- coding:utf-8 -*-																		\n" \
           "# Author : 小吴老师                                                                        \n" \
           "# Data ：2019/7/12 7:41                                                                    \n" \
-          "from tools import log_tool                                                                 \n" \
-          "from tools import shell_tool                                                               \n" \
-          "from tools import log_tool                                                                 \n" \
+          "from init import log_tool                                                                 \n" \
+          "from init import shell_tool                                                               \n" \
+          "from init import log_tool                                                                 \n" \
           "import pytest                                                                              \n" \
           "                                                                                           \n" \
           "if __name__ == '__main__':                                                                 \n" \

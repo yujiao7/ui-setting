@@ -2,6 +2,7 @@ import xlrd
 import xlwt
 from tools import os_tool
 
+
 def write_excel(file_name,data_title,data_list,encoding='utf-8'):
     # 创建workbook和sheet对象 注意Workbook的开头W要大写
     workbook = xlwt.Workbook(encoding=encoding)
