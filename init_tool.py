@@ -41,36 +41,35 @@ def init_api_project():
     _init_api_project()
 
 def init_ui_project():
-    url = 'https://raw.githubusercontent.com/LudvikWoo/guoya-ui-test/master/config/init_ui_project.yaml'
-    os_tool.mkdir(root_path+'config/')
-    save_path= root_path+'config/init_ui_project.yaml'
-    request_tool.copy_github_file(url,save_path)
+    # -*- coding:utf-8 -*-
+    # Author : 小吴老师
+    # Data ：2019/8/1 11:41
+    from tools import shell_tool, yaml_tool
+    from tools import os_tool
 
-    content =yaml_tool.get_yaml(save_path)
-    driver_info = content['chromedriver']
-    url = driver_info['url']
-    save_path=root_path+driver_info['save_path']
-    os_tool.mkdir(save_path)
-    save_name=driver_info['save_name']
-    unzip_name=driver_info['unzip_name']
-    zip_path = save_path+save_name
-    unzip_path = save_path+unzip_name
-    os_tool.remove(unzip_path)
-    request_tool.down_big_file(url, zip_path)
-    zip_tool.unzip_file(zip_path, save_path)
-    os_tool.remove(zip_path)
+    ## 先删除，再下载tools和ui工程
+    tools_prj = 'c:/guoya/auto_test_init/guoya-tools'
+    ui_prj = 'c:/guoya/auto_test_init/guoya-ui-test'
+    os_tool.deldir(tools_prj)
+    os_tool.deldir(ui_prj)
+    os_tool.mkdir(tools_prj)
+    os_tool.mkdir(ui_prj)
+    cmd = 'git clone https://github.com/LudvikWoo/guoya-tools.git ' + tools_prj
+    shell_tool.invoke(cmd)
+    cmd = 'git clone https://github.com/LudvikWoo/guoya-ui-test.git ' + ui_prj
+    shell_tool.invoke(cmd)
 
-    files = content['files']
-    for file in files:
-        url = file['url']
-        save_path = root_path+file['save_path']
-        save_name = save_path+file['save_name']
-        os_tool.mkdir(save_path)
-        request_tool.copy_github_file(url,save_name)
-
-    dirs = content['dirs']
+    ## 读取ui初始化配置文件
+    y = yaml_tool.get_yaml(ui_prj + '/init_ui_project.yaml')
+    ## 复制文件夹
+    dirs = y['dirs']
+    root_path = os_tool.get_root_path()
     for dir in dirs:
-        os_tool.mkdir(root_path+dir)
+        os_tool.copy_dir(ui_prj + '/' + dir, root_path + '/' + dir)
+    ## 复制文件
+    files = y['files']
+    for file in files:
+        os_tool.copy_file(ui_prj + '/' + file, root_path)
 
 if __name__ == '__main__':
     init_ui_project()
