@@ -6,5 +6,5 @@ python setup.py sdist
 ## 2. 发布版本
 ```
 pip install twine
-twine upload dist/guoya-tools-1.1.4.tar.gz
+twine upload dist/guoya-tools-1.1.5.tar.gz
 ```
