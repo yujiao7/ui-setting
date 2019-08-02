@@ -90,17 +90,21 @@ def down_big_file(srcUrl, localFile):
 def init_ui_project():
     root_path = get_root_path()
     url = 'http://chromedriver.storage.googleapis.com/75.0.3770.90/chromedriver_win32.zip'
-    os.makedirs(root_path + 'chrome_driver')
+    mkdir(root_path + 'chrome_driver')
     down_big_file(url,root_path+'chrome_driver/chromedriver.exe')
+
     ## 先删除，再下载tools和ui工程
     tools_prj = 'c:/guoya/auto_test_init/guoya-tools'
-    ui_prj = 'c:/guoya/auto_test_init/guoya-ui-test'
     deldir(tools_prj)
-    deldir(ui_prj)
     mkdir(tools_prj)
-    mkdir(ui_prj)
     cmd = 'git clone https://github.com/LudvikWoo/guoya-tools.git ' + tools_prj
     invoke(cmd)
+    copy_dir(tools_prj+'/'+'tools',root_path+'tools')
+
+
+    ui_prj = 'c:/guoya/auto_test_init/guoya-ui-test'
+    deldir(ui_prj)
+    mkdir(ui_prj)
     cmd = 'git clone https://github.com/LudvikWoo/guoya-ui-test.git ' + ui_prj
     invoke(cmd)
 
@@ -114,6 +118,8 @@ def init_ui_project():
     files = y['files']
     for file in files:
         copy_file(ui_prj + '/' + file, root_path)
+
+
 
 if __name__ == '__main__':
     init_ui_project()
