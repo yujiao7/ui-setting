@@ -89,9 +89,9 @@ def down_big_file(srcUrl, localFile):
 
 def init_ui_project():
     root_path = get_root_path()
-    url = 'http://chromedriver.storage.googleapis.com/75.0.3770.90/chromedriver_win32.zip'
-    mkdir(root_path + 'chrome_driver')
-    down_big_file(url,root_path+'chrome_driver/chromedriver.exe')
+    # url = 'http://chromedriver.storage.googleapis.com/75.0.3770.90/chromedriver_win32.zip'
+    # mkdir(root_path + 'chrome_driver')
+    # down_big_file(url,root_path+'chrome_driver/chromedriver.exe')
 
     ## 先删除，再下载tools和ui工程
     tools_prj = 'c:/guoya/auto_test_init/guoya-tools'
