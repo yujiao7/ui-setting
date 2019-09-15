@@ -7,7 +7,7 @@ from distutils.core import setup
 
 setup(
     name="guoya-tools",  # 这里是pip项目发布的名称
-    version="1.2.0",  # 版本号，数值大的会优先被pip
+    version="1.2.1",  # 版本号，数值大的会优先被pip
     keywords=["init", "auto-test"],
     description="to simplify auto test",
     long_description="A init package,to simplify develope auto test",
@@ -28,6 +28,7 @@ setup(
         'selenium==3.141.0',
         'pyyaml==5.1.1',
         'allure-pytest==2.7.0',
-        'pytest==5.0.1'
+        'pytest==5.0.1',
+        'pyautoit-win64==1.0.0'
     ]
 )
