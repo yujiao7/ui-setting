@@ -26,7 +26,7 @@ setup(
         'xlrd==1.2.0',
         'xlwt==1.3.0',
         'selenium==3.141.0',
-        'pyyaml==5.1.1',
+        'pyyaml==5.4',
         'allure-pytest==2.7.0',
         'pytest==5.0.1',
         'pyautoit==0.4.0'
